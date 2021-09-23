@@ -3,6 +3,7 @@ $( document ).ready ( onReady );
 function onReady(){
     console.log( 'I am JQuery ready!' );
     $( '#calculateAnswer' ).on ( 'click', performCalculation );
+    $( '#clearValues' ).on ( 'click', clearData );
     $( '.operationType' ).on ( 'click', setOperation );
     getPastCalculations();
 }
@@ -30,6 +31,11 @@ function getPastCalculations(){
             ${response[i].numTwo} = 
             <b>${response[i].answer}</b></li>`) 
         }; // end for loop
+        $( '#calcAnswer' ).empty()
+        $( '#calcAnswer' ).append(` ${response[0].numOne} 
+        ${response[0].operation} 
+        ${response[0].numTwo} = 
+        <b>${response[0].answer}</b>`)
     }).catch( function( err ){
         alert('There was an error');
         console.log('The error was:', err );

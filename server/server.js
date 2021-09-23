@@ -10,12 +10,7 @@
 
 // GLOBAL VIARIABLES
     const port = 5000;
-    let pastCalculations = [{
-        numOne: 5,
-        operation: '*',
-        numTwo: 7,
-        answer: 35
-    }];
+    let pastCalculations = [];
 
 // SPIN UP SERVER
     app.listen( port, () => {
@@ -42,6 +37,6 @@ app.post('/calculations', (req, res ) => {
     else if(el.operation === '/'){
         el.answer = (Number(el.numOne) / Number(el.numTwo))
         }
-    pastCalculations.push(el)
+    pastCalculations.unshift(el)
     res.sendStatus( 201 )
    });
