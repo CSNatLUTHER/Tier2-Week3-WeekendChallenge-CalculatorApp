@@ -26,3 +26,22 @@ app.get('/calculations', (req, res ) => {
  console.log( 'hit on GET /calculations');
  res.send( pastCalculations );
 });
+
+app.post('/calculations', (req, res ) => {
+    console.log( 'hit on POST /calculations:', req.body );
+    let el = req.body
+    if(el.operation === '+'){
+    el.answer = (Number(el.numOne) + Number(el.numTwo))
+    }
+    else if(el.operation === '-'){
+        el.answer = (Number(el.numOne) - Number(el.numTwo))
+    }
+    else if(el.operation === '*'){
+        el.answer = (Number(el.numOne) * Number(el.numTwo))
+    }
+    else if(el.operation === '/'){
+        el.answer = (Number(el.numOne) / Number(el.numTwo))
+        }
+    pastCalculations.push(el)
+    res.sendStatus( 201 )
+   });

@@ -49,6 +49,17 @@ Phase 1:
  - display calucluations in a list on DOM [x]
  - add dummy data to array on server.js to test GET call [x]
 
+Phase 2:
+===
+
+- create setOperation funciton to capture operation and update button css
+- create performCalculation function to capture inputs and send in object to server via Ajax [x]
+- great app.put function on server.js to:
+    - perform calculation
+    - push calculation and answer into pastCalculations array
+- update the getPastCalculations
+- create clearData funciton to empty inputs and reset global variables
+- clear the inputs and reset global variables
 
 
 
