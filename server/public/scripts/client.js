@@ -25,17 +25,19 @@ function getPastCalculations(){
         console.log('Back from server with:', response );
         let el = $("#listOfPastCalculations")
         el.empty()
-        for (let i = 0; i < response.length; i++) {
-            el.append(`<li>${response[i].numOne} 
-            ${response[i].operation} 
-            ${response[i].numTwo} = 
-            <b>${response[i].answer}</b></li>`) 
-        }; // end for loop
-        $( '#calcAnswer' ).empty()
-        $( '#calcAnswer' ).append(` ${response[0].numOne} 
-        ${response[0].operation} 
-        ${response[0].numTwo} = 
-        <b>${response[0].answer}</b>`)
+        if (response.length > 0){
+            for (let i = 0; i < response.length; i++) {
+                el.append(`<li>${response[i].numOne} 
+                ${response[i].operation} 
+                ${response[i].numTwo} = 
+                <b>${response[i].answer}</b></li>`) 
+            }; // end for loop
+            $( '#calcAnswer' ).empty()
+            $( '#calcAnswer' ).append(` ${response[0].numOne} 
+            ${response[0].operation} 
+            ${response[0].numTwo} = 
+            <b>${response[0].answer}</b>`)
+        }  // end if  
     }).catch( function( err ){
         alert('There was an error');
         console.log('The error was:', err );
@@ -44,6 +46,13 @@ function getPastCalculations(){
 
 function performCalculation(){
     console.log( 'in performCalculation' );
+    console.log($( "#numOneIn" ).val().length);
+    if ($( "#numOneIn" ).val().length <1 || 
+        operationType === '' || 
+        $( "#numTwoIn" ).val().length <1){
+            alert( "Two numbers and an operator must be selected to continue")
+    } // end if
+    else{
     let objectToSend = {
         numOne: $( "#numOneIn" ).val(),
         operation: operationType,
@@ -62,6 +71,7 @@ function performCalculation(){
         console.log('Error with caluation:', err );
     })
     clearData();
+    } // end else
 }
 
 function setOperation() {
